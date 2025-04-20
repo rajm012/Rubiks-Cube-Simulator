@@ -33,7 +33,7 @@ const RubiksCube = () => {
         'O': '#FFA500', // Orange
         'G': '#00FF00', // Green
         'B': '#0000FF', // Blue
-        'X': '#222222'  // Hidden/Internal (dark gray)
+        'X': '#717171'  // Hidden/Internal (dark gray)
     };
 
     // Generate all 27 cube pieces based on cube state
@@ -97,7 +97,7 @@ const CubeCanvas = () => {
             camera={{ position: [3.5, 3.5, 3.5], fov: 60 }}
             style={{ width: '100%', height: '100%' }}
         >
-            <color attach="background" args={['#1a2b3c']} />
+            {/* <color attach="background" args={['#1a2b3c']} /> */}
             <ambientLight intensity={0.8} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <directionalLight position={[5, 5, 5]} intensity={0.7} />

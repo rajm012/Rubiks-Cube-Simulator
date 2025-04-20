@@ -18,17 +18,17 @@ const StatsPanel = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+    <div className="rounded-lg shadow p-4">
       <h2 className="text-lg font-semibold mb-3">Stats</h2>
       
       <div className="flex flex-col space-y-3">
         <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Time</p>
+          <p className="text-sm text-gray-700 dark:text-gray-300">Time</p>
           <p className="text-2xl font-mono">{formatTime(timer)}</p>
         </div>
         
         <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Moves</p>
+          <p className="text-sm text-gray-700 dark:text-gray-300">Moves</p>
           <p className="text-2xl">{moveCount}</p>
         </div>
         

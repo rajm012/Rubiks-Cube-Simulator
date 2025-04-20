@@ -70,7 +70,7 @@ const Controls = () => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4 rounded-lg bg-white dark:bg-gray-800 shadow-lg">
+    <div className="w-full max-w-2xl mx-auto p-4 rounded-lg shadow-lg">
       {/* Timer Display */}
       <div className="mb-6 text-center">
         <div className="text-3xl font-mono font-bold text-gray-800 dark:text-white">

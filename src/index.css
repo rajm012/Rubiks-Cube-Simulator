@@ -2,18 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Additional custom styles */
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 .dark {
-  @apply bg-gray-900 text-white;
+  @apply bg-gray-500 text-gray-100;
 }
 
 .cube-face {
@@ -28,29 +18,19 @@ body {
   @apply px-2 py-1 m-1 rounded-md;
 }
 
-.move-F { @apply bg-red-100 text-red-700; }
-.move-F\' { @apply bg-red-100 text-red-700; }
-.move-B { @apply bg-orange-100 text-orange-700; }
-.move-B\' { @apply bg-orange-100 text-orange-700; }
-.move-R { @apply bg-blue-100 text-blue-700; }
-.move-R\' { @apply bg-blue-100 text-blue-700; }
-.move-L { @apply bg-green-100 text-green-700; }
-.move-L\' { @apply bg-green-100 text-green-700; }
-.move-U { @apply bg-yellow-100 text-yellow-700; }
-.move-U\' { @apply bg-yellow-100 text-yellow-700; }
-.move-D { @apply bg-gray-100 text-gray-700; }
-.move-D\' { @apply bg-gray-100 text-gray-700; }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* Light mode move colors */
+.move-F { @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200; }
+.move-F\' { @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200; }
+.move-B { @apply bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-200; }
+.move-B\' { @apply bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-200; }
+.move-R { @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-200; }
+.move-R\' { @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-200; }
+.move-L { @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200; }
+.move-L\' { @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200; }
+.move-U { @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-200; }
+.move-U\' { @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-200; }
+.move-D { @apply bg-gray-100 text-gray-800 dark:bg-gray-700/30 dark:text-gray-200; }
+.move-D\' { @apply bg-gray-100 text-gray-800 dark:bg-gray-700/30 dark:text-gray-200; }
 
 /* Custom scrollbar */
 .scrollbar::-webkit-scrollbar {
@@ -76,13 +56,11 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Canvas container */
 canvas {
   outline: none;
   touch-action: none;
 }
 
-/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -92,7 +70,6 @@ canvas {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Button hover animations */
 .hover-scale {
   transition: transform 0.15s ease-in-out;
 }
@@ -101,7 +78,6 @@ canvas {
   transform: scale(1.05);
 }
 
-/* Add this to your existing CSS */
 @keyframes spin-slow {
   from {
     transform: rotate(0deg);
@@ -115,3 +91,7 @@ canvas {
   animation: spin-slow 12s linear infinite;
 }
 
+/* Backdrop blur for better contrast */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}

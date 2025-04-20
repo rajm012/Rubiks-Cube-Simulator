@@ -4,7 +4,7 @@ const MoveHistory = () => {
   const { moveHistory } = useCube();
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 mt-6">
+    <div className="rounded-lg shadow p-4 mt-6">
       <h2 className="text-lg font-semibold mb-2">Move History</h2>
       
       {moveHistory.length === 0 ? (
