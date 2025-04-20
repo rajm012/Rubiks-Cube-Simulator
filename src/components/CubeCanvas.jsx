@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { useRef, useState, useEffect } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { useCube } from '../hooks/useCube';
 
@@ -10,7 +10,6 @@ const CubePiece = ({ position, colors }) => {
     return (
         <mesh ref={meshRef} position={position}>
             <boxGeometry args={[0.95, 0.95, 0.95]} />
-            {/* Create 6 faces with different materials */}
             <meshLambertMaterial attach="material-0" color={colors[0]} /> {/* Right */}
             <meshLambertMaterial attach="material-1" color={colors[1]} /> {/* Left */}
             <meshLambertMaterial attach="material-2" color={colors[2]} /> {/* Top */}
@@ -22,8 +21,18 @@ const CubePiece = ({ position, colors }) => {
 };
 
 // Animation group component for face rotations
-const RubiksCube = () => {
+const RubiksCube = ({ autoRotate }) => {
     const { cubeState } = useCube();
+    const cubeGroupRef = useRef();
+    
+    // Use frame loop for automatic rotation
+    useFrame(() => {
+        if (autoRotate && cubeGroupRef.current) {
+            // Slow rotation around Y and X axes
+            cubeGroupRef.current.rotation.y += 0.010;
+            cubeGroupRef.current.rotation.x += 0.015;
+        }
+    });
     
     // Map state colors to actual THREE.js colors with vibrant colors
     const colorMap = {
@@ -85,25 +94,47 @@ const RubiksCube = () => {
     };
 
     return (
-        <group>
+        <group ref={cubeGroupRef}>
             {renderCubePieces()}
         </group>
     );
 };
 
 const CubeCanvas = () => {
+    const { moveHistory } = useCube();
+    const [autoRotate, setAutoRotate] = useState(true);
+    const controlsRef = useRef();
+
+    // Stop auto-rotation when user starts interacting with the cube
+    useEffect(() => {
+        if (moveHistory.length > 0) {
+            setAutoRotate(false);
+            
+            // Reset camera position when stopping auto-rotation
+            if (controlsRef.current) {
+                controlsRef.current.reset();
+            }
+        }
+    }, [moveHistory]);
+
     return (
         <Canvas
             camera={{ position: [3.5, 3.5, 3.5], fov: 60 }}
             style={{ width: '100%', height: '100%' }}
         >
-            {/* <color attach="background" args={['#1a2b3c']} /> */}
             <ambientLight intensity={0.8} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <directionalLight position={[5, 5, 5]} intensity={0.7} />
             <directionalLight position={[-5, -5, -5]} intensity={0.3} />
-            <RubiksCube />
-            <OrbitControls enablePan={true} />
+            <RubiksCube autoRotate={autoRotate} />
+            <OrbitControls 
+                ref={controlsRef}
+                enablePan={true}
+                // Disable auto-rotation when the user interacts with controls
+                onChange={() => {
+                    if (autoRotate) setAutoRotate(false);
+                }}
+            />
         </Canvas>
     );
 };

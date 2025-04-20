@@ -3,7 +3,16 @@
 @tailwind utilities;
 
 .dark {
-  @apply bg-gray-500 text-gray-100;
+  @apply bg-transparent text-gray-100;
+}
+
+.dark {
+  @apply bg-gray-900 bg-opacity-50 text-gray-100;
+}
+
+.dark #gaming-background {
+  z-index: -1;
+  opacity: 1;
 }
 
 .cube-face {
